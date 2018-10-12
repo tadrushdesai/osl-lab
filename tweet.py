@@ -95,3 +95,20 @@ for source in data['Source']:
     if source not in sources:
         sources.append(source)
 
+# We print sources list:
+print("Creation of content sources:")
+for source in sources:
+    print("* {}".format(source))
+percent = np.zeros(len(sources))
+
+for source in data['Source']:
+    for index in range(len(sources)):
+        if source == sources[index]:
+            percent[index] += 1
+            pass
+
+percent /= 100
+
+# Pie chart:
+pie_chart = pd.Series(percent, index=sources, name='Sources')
+pie_chart.plot.pie(fontsize=11, autopct='%.2f', figsize=(6, 6));
